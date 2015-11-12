@@ -24,6 +24,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      getProfilePicture();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -90,7 +91,19 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+
+     
   }
+
+  function getProfilePicture(){
+      // Get the profile picture
+      FB.api("/me", function (response) {
+      if (response && !response.error) {
+        document.getElementById("profileImage").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=large");
+      }
+    }
+);
+    }
 </script>
 
 <!--
@@ -102,9 +115,10 @@
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 
-<div id="status">
-  
+<div id="status">  
 </div>
+
+<img id="profileImage" src="#">
     <!-- <div>
       <h1>Congratulations! You're already hosting with Parse.</h1>
       <p>To get started, edit this file at <em>public/index.html</em> and start adding static content.</p>
