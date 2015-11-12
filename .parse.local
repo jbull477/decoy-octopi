@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "DecoyOctopi": {
+      "applicationId": "uAoI72IPXiSBkbkniir377QpjNweoGpIciq4jaB3"
+    },
+    "_default": {
+      "link": "DecoyOctopi"
+    }
+  }
+}
