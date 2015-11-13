@@ -9,7 +9,7 @@ function statusChangeCallback(response) {
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
     testAPI();
-    getProfilePicture();
+    getProfilePicture(response.authResponse.accessToken);
   } 
   else if (response.status === 'not_authorized') {
     // The person is logged into Facebook, but not your app.
@@ -78,11 +78,14 @@ function testAPI() {
   });
 }
 
-function getProfilePicture(){
+function getProfilePicture(authToke){
     // Get the profile picture
   FB.api("/me", function (response) {
     if (response && !response.error) {
+      //var accessToken = response.authResponse.accessToken;
       document.getElementById("profileImage").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?width=9999");
+      console.log(authToke);
+      
     }
   });
 }
