@@ -86,6 +86,16 @@ function getProfilePicture(authToke){
       document.getElementById("profileImage").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?width=9999");
       console.log(authToke);
       
+      // Get the list of all albums so we can eventually get the profile pictures album
+      FB.api(
+        response.id + "/albums?access_token=" + authToke,
+        function (response) {
+          if (response && !response.error) {
+            /* handle the result */
+            console.log(response);
+          }
+        }
+      );
     }
   });
 }
