@@ -92,7 +92,16 @@ function getProfilePicture(authToke){
         function (response) {
           if (response && !response.error) {
             /* handle the result */
-            console.log(response);
+            //console.log(response.data);
+            console.log(response.data.length);
+
+            for(var i=0; i<response.data.length; i++)
+            {
+              if(response.data[i].name == "Profile Pictures") 
+              {
+                console.log("Found profile picture album: " + response.data[i].name);
+              }
+            }
           }
         }
       );
